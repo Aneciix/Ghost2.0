@@ -98,7 +98,7 @@ public class Ghost : MonoBehaviour
         {
             if (transform.position.y < -5.71f) 
             {
-                SceneManager.LoadScene("SampleScene");
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             }
 
         }
@@ -109,7 +109,7 @@ public class Ghost : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            SceneManager.LoadScene("SampleScene");
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
     }
 
