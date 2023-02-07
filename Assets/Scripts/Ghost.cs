@@ -107,9 +107,13 @@ public class Ghost : MonoBehaviour
     //Detecta las colisiones
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Enemy"))
+        if (collision.gameObject.CompareTag("Enemy")) // Cuando se choca con un enemigo se reinicia la escena
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
+        if (collision.gameObject.CompareTag("Text")) // Cuando el texto cae sobre el personaje, en vez de matarlo cambia a la siguiente escena
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
     }
 
@@ -120,6 +124,11 @@ public class Ghost : MonoBehaviour
         {
             Destroy(collision.transform.parent.gameObject);
             rb.velocity = new Vector2(rb.velocity.x, JForce/80);
+        }
+        if (collision.gameObject.CompareTag("objeto"))
+        {
+            Destroy(collision.gameObject);
+
         }
     }
 
