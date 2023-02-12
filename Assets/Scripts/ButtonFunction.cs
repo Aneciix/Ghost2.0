@@ -8,7 +8,7 @@ public class ButtonFunction : MonoBehaviour
     //Cambia de escena
     public void ChangeScene(string kk)
     {
-        SceneManager.LoadScene(kk);
+        GameManager.instance.ChangeScene(kk); 
     }
 
     //El boton Exit te saca del jugeo

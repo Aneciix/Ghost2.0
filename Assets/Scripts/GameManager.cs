@@ -13,6 +13,10 @@ public class GameManager : MonoBehaviour
     private int score = 0;
     private float time = 0;
 
+    public AudioClip MenuSong, LevelSong;
+    [Range(0, 1)]
+    public float ambientVolume;
+    
     void Awake()
     {
         if (!instance)
@@ -26,13 +30,26 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void ChangeScene (string name)
+    private void Start() //Se reproduce la canción del menú
     {
+        AudioManager.instance.PlayAudioOnLoop(MenuSong, ambientVolume);
+    }
+    public void ChangeScene (string name) 
+    {
+        time = 0;
         SceneManager.LoadScene(name);
         AudioManager.instance.ClearAudioList();
+        if(name == "Start")
+        {
+            AudioManager.instance.PlayAudioOnLoop(MenuSong, ambientVolume);
+        }
+        else
+        {
+            AudioManager.instance.PlayAudioOnLoop(LevelSong, ambientVolume);
+        }
     }
 
-    public int gm_score
+    public int gm_score 
     {
         get { return score; }
         set { score += value; }

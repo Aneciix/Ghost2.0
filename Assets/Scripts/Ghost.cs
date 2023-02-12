@@ -23,6 +23,8 @@ public class Ghost : MonoBehaviour
 
     private SpriteRenderer sp;
 
+    public AudioClip item, bicho;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -113,7 +115,13 @@ public class Ghost : MonoBehaviour
         }
         if (collision.gameObject.CompareTag("Text")) // Cuando el texto cae sobre el personaje, en vez de matarlo cambia a la siguiente escena
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            string SceneName = "";
+
+            if(SceneManager.GetActiveScene().name == "Level 1") { SceneName = "Level 2"; }
+
+            else if (SceneManager.GetActiveScene().name == "Level 2") { SceneName = "Start"; }
+
+            GameManager.instance.ChangeScene(SceneName);
         }
     }
 
@@ -122,11 +130,13 @@ public class Ghost : MonoBehaviour
     {
         if(collision.gameObject.CompareTag("Para que muera"))
         {
+            AudioManager.instance.PlayAudio(bicho); // Cuanod lo mata suena
             Destroy(collision.transform.parent.gameObject);
             rb.velocity = new Vector2(rb.velocity.x, JForce/80);
         }
         if (collision.gameObject.CompareTag("objeto"))
         {
+            AudioManager.instance.PlayAudio(item); // Cuando lo toca suena 
             Destroy(collision.gameObject);
 
         }
