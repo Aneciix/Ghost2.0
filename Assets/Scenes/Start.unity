@@ -860,7 +860,7 @@ MonoBehaviour:
   soundVolume: 0
   MenuSong: {fileID: 8300000, guid: 73c53bd40979c0845af6158c7f0707ab, type: 3}
   LevelSong: {fileID: 8300000, guid: 4bef84c39cbe159468a55e774cd9e716, type: 3}
-  ambientVolume: 0.049
+  ambientVolume: 0.464
 --- !u!4 &1466561712
 Transform:
   m_ObjectHideFlags: 0

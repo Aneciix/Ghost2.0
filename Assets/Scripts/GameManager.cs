@@ -36,7 +36,8 @@ public class GameManager : MonoBehaviour
     }
     public void ChangeScene (string name) 
     {
-        time = 0;
+        time = 0; // Empieza en 0 cuando cambia de escena
+        score = 0;
         SceneManager.LoadScene(name);
         AudioManager.instance.ClearAudioList();
         if(name == "Start")

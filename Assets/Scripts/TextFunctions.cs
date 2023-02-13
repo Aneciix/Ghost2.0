@@ -15,10 +15,16 @@ public class TextFunctions : MonoBehaviour
     void Update()
     {
         Timetext();
+        Score();
 
-        void Timetext()
+        void Timetext() //Tiempo
         {
             TimeText.text = " Time " + Mathf.Round(GameManager.instance.gm_time * 100) * 0.01f;
+        }
+
+        void Score() //Puntos
+        {
+            ScoreText.text = "Score " + GameManager.instance.gm_score;
         }
     }
 

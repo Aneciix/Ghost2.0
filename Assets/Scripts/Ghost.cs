@@ -100,7 +100,7 @@ public class Ghost : MonoBehaviour
         {
             if (transform.position.y < -5.71f) 
             {
-                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+                GameManager.instance.ChangeScene(SceneManager.GetActiveScene().name);
             }
 
         }
@@ -111,7 +111,7 @@ public class Ghost : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy")) // Cuando se choca con un enemigo se reinicia la escena
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            GameManager.instance.ChangeScene(SceneManager.GetActiveScene().name);
         }
         if (collision.gameObject.CompareTag("Text")) // Cuando el texto cae sobre el personaje, en vez de matarlo cambia a la siguiente escena
         {
@@ -130,12 +130,14 @@ public class Ghost : MonoBehaviour
     {
         if(collision.gameObject.CompareTag("Para que muera"))
         {
-            AudioManager.instance.PlayAudio(bicho); // Cuanod lo mata suena
+            GameManager.instance.gm_score = 25; // Cuando lo mata añade puntos
+            AudioManager.instance.PlayAudio(bicho); // Cuando lo mata suena
             Destroy(collision.transform.parent.gameObject);
             rb.velocity = new Vector2(rb.velocity.x, JForce/80);
         }
         if (collision.gameObject.CompareTag("objeto"))
         {
+            GameManager.instance.gm_score = 50; // Cuando lo toca añade puntos
             AudioManager.instance.PlayAudio(item); // Cuando lo toca suena 
             Destroy(collision.gameObject);
 
