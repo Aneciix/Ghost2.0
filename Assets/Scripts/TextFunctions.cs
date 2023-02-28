@@ -5,10 +5,10 @@ using TMPro;
 
 public class TextFunctions : MonoBehaviour
 {
-    public TMP_Text TimeText, ScoreText;
+    public TMP_Text TimeText, ScoreText, KillText;
     void Start()
     {
-        
+
     }
 
 
@@ -16,16 +16,20 @@ public class TextFunctions : MonoBehaviour
     {
         Timetext();
         Score();
-
-        void Timetext() //Tiempo
-        {
-            TimeText.text = " Time " + Mathf.Round(GameManager.instance.gm_time * 100) * 0.01f;
-        }
-
-        void Score() //Puntos
-        {
-            ScoreText.text = "Score " + GameManager.instance.gm_score;
-        }
+        Kills();
+    }
+    void Timetext() //Tiempo
+    {
+        TimeText.text = " Time " + Mathf.Round(GameManager.instance.gm_time * 100) * 0.01f;
     }
 
+    void Score() //Puntos
+    {
+        ScoreText.text = "Score " + GameManager.instance.gm_score;
+    }
+
+    void Kills() //Puntos
+    {
+        KillText.text = "Kills " + GameManager.instance.gm_kills;
+    }
 }

@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
 
     private int score = 0;
     private float time = 0;
+    private int kills = 0;
 
     public AudioClip MenuSong, LevelSong;
     [Range(0, 1)]
@@ -61,6 +62,11 @@ public class GameManager : MonoBehaviour
         get { return time; }
     }
 
+    public int gm_kills
+    {
+        get { return kills; }
+        set { kills += value; }
+    }
     private void Update()
     {
         time += Time.deltaTime;

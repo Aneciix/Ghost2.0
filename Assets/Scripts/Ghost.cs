@@ -25,6 +25,11 @@ public class Ghost : MonoBehaviour
 
     public AudioClip item, bicho;
 
+    private int maxJump = 3;
+
+
+    
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -53,6 +58,7 @@ public class Ghost : MonoBehaviour
             touchingdown = false;
         }
 
+
         void Movement()
         {
             // Para moverse de un lado a otro
@@ -70,13 +76,16 @@ public class Ghost : MonoBehaviour
 
             if (Mathf.Abs(moveX) > 0.1f) { animator.SetBool("isWalking", true); }
             else { animator.SetBool("isWalking", false); }
-            
+
+
             //Animación de salto
             if (Input.GetKey(KeyCode.Space)||!touchingdown)
             {
                 animator.SetBool("isJumping", true);
             }
-            else { animator.SetBool("isJumping", false);
+            else 
+            { 
+                animator.SetBool("isJumping", false);
             }
 
             //Direccion a la que mira el jugador
@@ -132,6 +141,7 @@ public class Ghost : MonoBehaviour
         {
             GameManager.instance.gm_score = 25; // Cuando lo mata añade puntos
             AudioManager.instance.PlayAudio(bicho); // Cuando lo mata suena
+            GameManager.instance.gm_kills = 1; // Cuando mata un enemigo añade 1 punto
             Destroy(collision.transform.parent.gameObject);
             rb.velocity = new Vector2(rb.velocity.x, JForce/80);
         }
@@ -142,6 +152,17 @@ public class Ghost : MonoBehaviour
             Destroy(collision.gameObject);
 
         }
+
+        //Animación  llama
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            animator.SetBool("FireDeath", true);
+        }
+        else if (collision.gameObject.CompareTag("Enemy")!)
+        {
+            animator.SetBool("FireDeath", false);
+        }
+
     }
 
 }
